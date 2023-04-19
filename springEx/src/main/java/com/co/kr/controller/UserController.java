@@ -20,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.co.kr.domain.BoardListDomain;
+import com.co.kr.domain.SoccerListDomain;
 import com.co.kr.domain.LoginDomain;
+import com.co.kr.service.SoccerUploadService;
 import com.co.kr.service.UploadService;
 import com.co.kr.service.UserService;
 import com.co.kr.util.CommonUtils;
@@ -39,6 +41,9 @@ public class UserController {
 	
 	@Autowired
 	private UploadService uploadService;
+	
+	@Autowired
+	private SoccerUploadService socUploadService;
 
 	@RequestMapping(value = "board")
 	public ModelAndView login(LoginVO loginDTO, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -89,6 +94,17 @@ public class UserController {
 		System.out.println("items ==> "+ items);
 		mav.addObject("items", items);
 		mav.setViewName("board/boardList.html");
+		return mav; 
+	};
+	
+
+	@RequestMapping(value = "socList")
+	public ModelAndView socList() { 
+		ModelAndView mav = new ModelAndView();
+		List<SoccerListDomain> items = socUploadService.soccerList();
+		System.out.println("items ==> "+ items);
+		mav.addObject("items", items);
+		mav.setViewName("soccer/socList.html");
 		return mav; 
 	};
 	

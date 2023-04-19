@@ -7,13 +7,15 @@
 </div>
 
 <div class="title" style="color:#00a2be">촉구선수 리스트</div>
-<form role="form" th:object=${fileListVO} th:action="@{editSave}" method="post" enctype="multipart/form-data">
+<form role="form" th:object=${soccerListVO} th:action="@{socEditSave}" method="post" enctype="multipart/form-data">
     <div class="section form">
        <table>
         <colgroup>
-            <col style="width:10%"/>
+            <col style="width:15%"/>
             <col style="width:5%"/>
-            <col style="width:10%"/>
+            <col style="width:15%"/>
+            <col style="width:15%"/>
+            <col style="width:15%"/>
             <col style="width:90%"/>
         </colgroup>
         <tbody>
@@ -30,7 +32,7 @@
 	            <th>선수 포지션</th>
                 <td>
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{title}" placeholder="선수 포지션" required/>
+                    <input type="text" th:field="*{position}" placeholder="선수 포지션" required/>
                 </td>
             </tr>
             
@@ -38,7 +40,7 @@
 	            <th>선수 소속팀</th>
                 <td>
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{title}" placeholder="선수 소속팀" required/>
+                    <input type="text" th:field="*{team}" placeholder="선수 소속팀" required/>
                 </td>
             </tr>
             
@@ -51,7 +53,7 @@
             <tr> 
                <th><label for="file">선수 사진</label></th>
                 <td>
-                    <input type="file" id="file" name="files" multiple />
+                    <input type="file" id="socFile" name="socFiles" multiple />
                     <span style="color: #00a2be" th:text="'*새로 사진첨부시 기존 사진은 삭제됩니다.(첨부된 사진 : '+ ${fileLen} + '개)'"></span>
                 </td>
             </tr>

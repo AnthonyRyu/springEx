@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.co.kr.mapper.SoccerUploadMapper">
+
+	<!--select all-->
+	<select id="soccerList" resultType="com.co.kr.domain.SoccerListDomain">
+	  SELECT soc_seq, mb_id, soc_title, soc_position, soc_team, soc_content, soc_create_at, soc_update_at
+	  FROM jsp.soccer order by soc_update_at desc
+	</select>
+	
+	<!-- content insert -->
+	<insert id="socContentUpload" parameterType="com.co.kr.domain.SoccerContentDomain"
+	useGeneratedKeys="true"
+        keyProperty="socSeq" keyColumn="soc_seq">
+	
+        INSERT INTO jsp.soccer (
+            			mb_id,   
+						soc_title,
+						soc_position,
+						soc_team,                   
+						soc_content  
+        )
+        VALUES (
+            #{mbId},
+            #{socTitle},
+            #{socPosition},
+            #{socTeam},
+            #{socContent}
+        )
+	</insert>
+	
+	<!-- file insert -->
+	<insert id="socFileUpload" parameterType="com.co.kr.domain.SoccerFileDomain">
+        INSERT INTO jsp.files (
+            soc_seq,
+            mb_id,   
+            up_original_file_name,                         
+            up_new_file_name,                      
+            up_file_path,                                   
+            up_file_size
+        )
+        VALUES (
+            #{socSeq},
+            #{mbId},
+            #{upOriginalFileName},
+            #{upNewFileName},
+            #{upFilePath},
+            #{upFileSize}
+        )
+    </insert>
+
+		<!-- Content update -->
+    <update id="socContentUpdate" parameterType="com.co.kr.domain.SoccerContentDomain">
+        UPDATE jsp.soccer SET
+                soc_seq=#{socSeq},
+                mb_id=#{mbId},
+                soc_title=#{socTitle},
+                soc_position=#{socPosition},
+                soc_team=#{socTeam},
+                soc_content=#{socContent}, 
+                soc_update_at=now()  
+        WHERE soc_seq=#{socSeq}
+    </update>
+
+    <!-- file update -->
+    <update id="socFileUpdate" parameterType="com.co.kr.domain.SoccerFileDomain">
+        UPDATE jsp.files SET
+                soc_seq=#{socSeq},
+                mb_id=#{mbId},
+                up_original_file_name=#{upOriginalFileName},
+                up_new_file_name=#{upNewFileName}, 
+                up_file_path=#{upFilePath},
+                up_file_size=#{upFileSize}
+        WHERE soc_seq=#{socSeq}
+    </update>
+
+	<!-- Content delete -->
+    <delete id="socContentRemove" parameterType="hashMap">
+       DELETE FROM jsp.soccer WHERE soc_seq=#{socSeq}
+    </delete>
+	<!-- file delete -->
+    <delete id="socFileRemove" parameterType="com.co.kr.domain.SoccerFileDomain">
+	    DELETE FROM jsp.files WHERE up_new_file_name = #{upNewFileName}
+	</delete>
+	
+	<!-- content -->
+	<select id="soccerSelectOne" resultType="com.co.kr.domain.SoccerListDomain" parameterType="map">
+    	SELECT soc_seq, mb_id, soc_title, soc_content, soc_create_at, soc_update_at
+    	FROM jsp.soccer where soc_seq = #{socSeq}
+	</select>
+
+	<!-- file -->
+	<select id="soccerSelectOneFile" resultType="com.co.kr.domain.SoccerFileDomain" parameterType="map">
+    	SELECT soc_seq, mb_id, up_original_file_name, up_new_file_name, up_file_path, up_file_size
+    	FROM jsp.view_soccer where soc_seq = #{socSeq}
+	</select>
+
+</mapper>

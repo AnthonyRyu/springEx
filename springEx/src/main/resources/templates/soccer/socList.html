@@ -5,7 +5,7 @@
                 <col style="width: 5%"/>
                 <col style="width: 5%"/>
                 <col style="width: 10%"/>
-                <col style="width: 50%"/>
+                <col style="width: 10%"/>
                 <col style="width: 10%"/>
                 <col style="width: 15%"/>
                 <col style="width: 15%"/>
@@ -26,10 +26,10 @@
               
                 <tr th:each="item : ${items}">
                     <td th:text="${item.socSeq}"></td>
-                    <td><a th:text="${item.socTitle}" th:href="@{/detail(socSeq = ${item.socSeq})}"></a></td>
+                    <td><a th:text="${item.socTitle}" th:href="@{/socDetail(socSeq = ${item.socSeq})}"></a></td>
                     <td th:text="${item.mbId}"></td>
-                    <td><a th:text="${item.socPosition}" th:href="@{/detail(socSeq = ${item.socSeq})}"></a></td>
-                    <td><a th:text="${item.socTeam}" th:href="@{/detail(socSeq = ${item.socSeq})}"></a></td>
+                    <td th:text="${item.socPosition}"></td>
+                    <td th:text="${item.socTeam}"></td>
                     <td th:text="${item.socCreateAt}"></td>
                     <td th:text="${item.socUpdateAt}"></td>
                 </tr>
@@ -38,20 +38,22 @@
         </tbody>
     </table>
     
-    <th:block th:if="${detail}">   
-        <h1 style="padding: 30px 0;" th:text="${detail.socTitle}"></h1>
+    <th:block th:if="${socDetail}">   
+        <h1 style="padding: 30px 0;" th:text="${socDetail.socTitle}"></h1>
         
         <div style="text-align: right;">
-            <span style="color: #00a2be;">등록번호 </span> <span th:text="${detail.socSeq}"></span> <span style="color: #00a2be"> | </span>
-            <span style="color: #00a2be">글쓴 축구팬 </span> <span th:text="${detail.mbId}"></span> <span style="color: #00a2be"> | </span> 
-            <span th:text="${detail.socCreateAt}"></span> <span style="color: #00a2be"> | </span> 
-            <span th:text="${detail.socUpdateAt}"></span> 
+            <span style="color: #00a2be;">등록번호 </span> <span th:text="${socDetail.socSeq}"></span> <span style="color: #00a2be"> | </span>
+            <span style="color: #00a2be">글쓴 축구팬 </span> <span th:text="${socDetail.mbId}"></span> <span style="color: #00a2be"> | </span> 
+            <span style="color: #00a2be">포지션 </span> <span th:text="${socDetail.socPosition}"></span> <span style="color: #00a2be"> | </span> 
+            <span style="color: #00a2be">소속팀 </span> <span th:text="${socDetail.socTeam}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${socDetail.socCreateAt}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${socDetail.socUpdateAt}"></span> 
             
         </div>
         
         <div>
-            <p style="padding: 30px 0;" th:text="${detail.socContent}"></p>
-            <ul th:if="${files}"  th:each="file : ${files}" style="display: inline-block;margin-bottom: 5px;">
+            <p style="padding: 30px 0;" th:text="${socDetail.socContent}"></p>
+            <ul th:if="${socFiles}"  th:each="socFile : ${socFiles}" style="display: inline-block;margin-bottom: 5px;">
                 <li> <img id="imgId" th:src="@{${file.upNewFileName}}" alt="첨부이미지" height="280" /></li>
             </ul>
             
@@ -59,9 +61,9 @@
 
         <div style="padding: 30px 0; text-align: right;">
         
-        <th:block th:if="${detail.mbId == session.id}">
-        	<a th:href="@{/edit(bdSeq = ${detail.socSeq})}"><button>수정</button></a>
-            <a th:href="@{/remove(bdSeq = ${detail.socSeq})}"><button>삭제</button></a>
+        <th:block th:if="${socDetail.mbId == session.id}">
+        	<a th:href="@{/socEdit(socSeq = ${socDetail.socSeq})}"><button>수정</button></a>
+            <a th:href="@{/socRemove(socSeq = ${socDetail.socSeq})}"><button>삭제</button></a>
         </th:block>
             <a  th:href="@{socList}"><button style="background-color: #00a2be; color: white; margin-left: 20px">목록으로</button></a>
         </div>
