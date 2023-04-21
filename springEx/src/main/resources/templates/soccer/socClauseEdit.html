@@ -7,47 +7,37 @@
 </div>
 
 <div class="title" style="color:#00a2be">촉구선수 리스트</div>
-<form role="form" th:object=${soccerListVO} th:action="@{socEditSave}" method="post" enctype="multipart/form-data">
+<form role="form" th:object=${soccerListVO} th:action="@{soccerEditSave}" method="post" enctype="multipart/form-data">
     <div class="section form">
        <table>
         <colgroup>
-            <col style="width:15%"/>
-            <col style="width:5%"/>
-            <col style="width:15%"/>
-            <col style="width:15%"/>
-            <col style="width:15%"/>
+            <col style="width:20%"/>
             <col style="width:90%"/>
         </colgroup>
         <tbody>
             <tr> 
 	            <th>선수명</th>
                 <td>
-                    <input type="hidden" th:field="*{seq}" />
+                    <input type="hidden" th:field="*{socSeq}" />
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{title}" placeholder="선수명" required/>
+                    <input type="text" th:field="*{socTitle}" placeholder="선수명" required/>
                 </td>
-            </tr>
-            
-            <tr> 
-	            <th>선수 포지션</th>
+                <th>선수 포지션</th>
                 <td>
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{position}" placeholder="선수 포지션" required/>
+                    <input type="text" th:field="*{socPosition}" placeholder="선수 포지션" required/>
                 </td>
-            </tr>
-            
-            <tr> 
-	            <th>선수 소속팀</th>
+                <th>선수 소속팀</th>
                 <td>
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{team}" placeholder="선수 소속팀" required/>
-                </td>
-            </tr>
-            
+                    <input type="text" th:field="*{socTeam}" placeholder="선수 소속팀" required/>
+                </td> 
+            </tr>          
+   
             <tr> 
                <th>선수 소개</th>
                 <td >
-                   <textarea colspan="3" id="story" th:field="*{content}" placeholder="선수의 특징 및 특성을 적어주세요." rows="5" cols="200" required></textarea>
+                   <textarea colspan="3" id="story" th:field="*{socContent}" placeholder="선수의 특징 및 특성을 적어주세요." rows="5" cols="200" required></textarea>
                 </td>
             </tr>
             <tr> 

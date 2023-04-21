@@ -14,16 +14,16 @@ import com.co.kr.vo.soccerListVO;
 public interface SoccerUploadService {
 	
 	// 인서트
-	public int socFileProcess(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq);
+	public int soccerFileProcess(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq);
 	
 	// 전체 리스트 조회   // 지난시간 작성
 	public List<SoccerListDomain> soccerList();
 
 	// 하나 삭제
-	public void socContentRemove(HashMap<String, Object> map);
+	public void soccerContentRemove(HashMap<String, Object> map);
 
 	// 하나 삭제
-	public void socFileRemove(SoccerFileDomain soccerFileDomain);
+	public void soccerFileRemove(SoccerFileDomain soccerFileDomain);
 	
 	// 하나 리스트 조회
 	public SoccerListDomain soccerSelectOne(HashMap<String, Object> map);

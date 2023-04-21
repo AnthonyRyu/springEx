@@ -8,8 +8,11 @@ import lombok.Setter;
 public class soccerListVO {
 
 	private String isEdit;
-	private String seq;
-	private String title;
-	private String content;
-	
+	private String socSeq;
+	private String socTitle;
+	private String socPosition;
+	private String socTeam;
+	private String socContent;
+	private String socCreateAt;
+	private String socUpdateAt;
 }

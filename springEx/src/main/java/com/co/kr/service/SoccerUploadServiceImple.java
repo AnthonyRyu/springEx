@@ -48,25 +48,25 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 	}
 
 	@Override
-	public int socFileProcess(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) {
+	public int soccerFileProcess(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) {
 		//session 생성
 		HttpSession session = httpReq.getSession();
 		
 		//content domain 생성 
 		SoccerContentDomain soccerContentDomain = SoccerContentDomain.builder()
 				.mbId(session.getAttribute("id").toString())
-				.socTitle(soccerListVO.getTitle())
-				.socContent(soccerListVO.getContent())
+				.socTitle(soccerListVO.getSocTitle())
+				.socContent(soccerListVO.getSocContent())
 				.build();
 		
 				if(soccerListVO.getIsEdit() != null) {
-					soccerContentDomain.setSocSeq(Integer.parseInt(soccerListVO.getSeq()));
+					soccerContentDomain.setSocSeq(Integer.parseInt(soccerListVO.getSocSeq()));
 					System.out.println("수정업데이트");
 					// db 업데이트
-					soccerUploadMapper.socContentUpdate(soccerContentDomain);
+					soccerUploadMapper.soccerContentUpdate(soccerContentDomain);
 				}else {	
 					// db 인서트
-					soccerUploadMapper.contentUpload(soccerContentDomain);
+					soccerUploadMapper.soccerContentUpload(soccerContentDomain);
 					System.out.println(" db 인서트");
 
 				}
@@ -83,7 +83,7 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 				if(soccerListVO.getIsEdit() != null) { // 수정시 
 
 	
-					List<SoccerFileDomain> socFileList = null;
+					List<SoccerFileDomain> soccerFileList = null;
 					
 					
 					
@@ -94,18 +94,18 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 							
 							if(session.getAttribute("files") != null) {	
 
-								socFileList = (List<SoccerFileDomain>) session.getAttribute("files");
+								soccerFileList = (List<SoccerFileDomain>) session.getAttribute("files");
 								
-								for (SoccerFileDomain list : socFileList) {
-									list.getUpFilePath();
-									Path filePath = Paths.get(list.getUpFilePath());
+								for (SoccerFileDomain list : soccerFileList) {
+									list.getSocUpFilePath();
+									Path filePath = Paths.get(list.getSocUpFilePath());
 							 
 							        try {
 							        	
 							            // 파일 삭제
 							            Files.deleteIfExists(filePath); // notfound시 exception 발생안하고 false 처리
 							            //삭제 
-										socFileRemove(list); //데이터 삭제
+										soccerFileRemove(list); //데이터 삭제
 										
 							        } catch (DirectoryNotEmptyException e) {
 										throw RequestException.fire(Code.E404, "디렉토리가 존재하지 않습니다", HttpStatus.NOT_FOUND);
@@ -142,18 +142,18 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 					if(!multipartFile.isEmpty()) {  // 파일 있을때 
 						
 						//확장자 추출
-						String originalFileExtension;
-						String contentType = multipartFile.getContentType();
-						String origFilename = multipartFile.getOriginalFilename();
+						String soccerOriginalFileExtension;
+						String soccerContentType = multipartFile.getContentType();
+						String soccerOrigFilename = multipartFile.getOriginalFilename();
 						
 						//확장자 조재안을경우
-						if(ObjectUtils.isEmpty(contentType)){
+						if(ObjectUtils.isEmpty(soccerContentType)){
 							break;
 						}else { // 확장자가 jpeg, png인 파일들만 받아서 처리
-							if(contentType.contains("image/jpeg")) {
-								originalFileExtension = ".jpg";
-							}else if(contentType.contains("image/png")) {
-								originalFileExtension = ".png";
+							if(soccerContentType.contains("image/jpeg")) {
+								soccerOriginalFileExtension = ".jpg";
+							}else if(soccerContentType.contains("image/png")) {
+								soccerOriginalFileExtension = ".png";
 							}else {
 								break;
 							}
@@ -162,7 +162,7 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 						//파일명을 업로드한 날짜로 변환하여 저장
 						String uuid = UUID.randomUUID().toString();
 						String current = CommonUtils.currentTime();
-						String newFileName = uuid + current + originalFileExtension;
+						String newFileName = uuid + current + soccerOriginalFileExtension;
 						
 						//최종경로까지 지정
 						Path targetPath = rootPath.resolve(newFileName);
@@ -181,14 +181,14 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 							SoccerFileDomain soccerFileDomain = SoccerFileDomain.builder()
 									.socSeq(socSeq)
 									.mbId(mbId)
-									.upOriginalFileName(origFilename)
-									.upNewFileName("resources/upload/"+newFileName) // WebConfig에 동적 이미지 폴더 생성 했기때문
-									.upFilePath(targetPath.toString())
-									.upFileSize((int)multipartFile.getSize())
+									.socUpOriginalFileName(soccerOrigFilename)
+									.socUpNewFileName("resources/soccerUpload/"+newFileName) // WebConfig에 동적 이미지 폴더 생성 했기때문
+									.socUpFilePath(targetPath.toString())
+									.socUpFileSize((int)multipartFile.getSize())
 									.build();
 							
 								// db 인서트
-								soccerUploadMapper.fileUpload(soccerFileDomain);
+								soccerUploadMapper.soccerFileUpload(soccerFileDomain);
 								System.out.println("upload done");
 							
 						} catch (IOException e) {
@@ -203,13 +203,13 @@ public class SoccerUploadServiceImple implements SoccerUploadService {
 	}
 
 	@Override
-	public void socContentRemove(HashMap<String, Object> map) {
-		soccerUploadMapper.socContentRemove(map);
+	public void soccerContentRemove(HashMap<String, Object> map) {
+		soccerUploadMapper.soccerContentRemove(map);
 	}
 
 	@Override
-	public void socFileRemove(SoccerFileDomain soccerFileDomain) {
-		soccerUploadMapper.socFileRemove(soccerFileDomain);
+	public void soccerFileRemove(SoccerFileDomain soccerFileDomain) {
+		soccerUploadMapper.soccerFileRemove(soccerFileDomain);
 	}
 	
 	// 하나만 가져오기

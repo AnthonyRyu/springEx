@@ -13,9 +13,9 @@ public class SoccerFileDomain {
 	private String socPosition;
 	private String socTeam;
 	
-	private String upOriginalFileName;
-	private String upNewFileName; //동일 이름 업로드 될 경우
-	private String upFilePath;
-	private Integer upFileSize;
+	private String socUpOriginalFileName;
+	private String socUpNewFileName; //동일 이름 업로드 될 경우
+	private String socUpFilePath;
+	private Integer socUpFileSize;
 	
 }

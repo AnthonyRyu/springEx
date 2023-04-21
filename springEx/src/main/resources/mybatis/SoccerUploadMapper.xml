@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- content insert -->
-	<insert id="socContentUpload" parameterType="com.co.kr.domain.SoccerContentDomain"
+	<insert id="soccerContentUpload" parameterType="com.co.kr.domain.SoccerContentDomain"
 	useGeneratedKeys="true"
         keyProperty="socSeq" keyColumn="soc_seq">
 	
@@ -31,27 +31,27 @@
 	</insert>
 	
 	<!-- file insert -->
-	<insert id="socFileUpload" parameterType="com.co.kr.domain.SoccerFileDomain">
-        INSERT INTO jsp.files (
+	<insert id="soccerFileUpload" parameterType="com.co.kr.domain.SoccerFileDomain">
+        INSERT INTO jsp.soccerfiles (
             soc_seq,
             mb_id,   
-            up_original_file_name,                         
-            up_new_file_name,                      
-            up_file_path,                                   
-            up_file_size
+            soc_up_original_file_name,                         
+            soc_up_new_file_name,                      
+            soc_up_file_path,                                   
+            soc_up_file_size
         )
         VALUES (
             #{socSeq},
             #{mbId},
-            #{upOriginalFileName},
-            #{upNewFileName},
-            #{upFilePath},
-            #{upFileSize}
+            #{socUpOriginalFileName},
+            #{socUpNewFileName},
+            #{socUpFilePath},
+            #{socUpFileSize}
         )
     </insert>
 
 		<!-- Content update -->
-    <update id="socContentUpdate" parameterType="com.co.kr.domain.SoccerContentDomain">
+    <update id="soccerContentUpdate" parameterType="com.co.kr.domain.SoccerContentDomain">
         UPDATE jsp.soccer SET
                 soc_seq=#{socSeq},
                 mb_id=#{mbId},
@@ -64,24 +64,24 @@
     </update>
 
     <!-- file update -->
-    <update id="socFileUpdate" parameterType="com.co.kr.domain.SoccerFileDomain">
-        UPDATE jsp.files SET
+    <update id="soccerFileUpdate" parameterType="com.co.kr.domain.SoccerFileDomain">
+        UPDATE jsp.soccerfiles SET
                 soc_seq=#{socSeq},
                 mb_id=#{mbId},
-                up_original_file_name=#{upOriginalFileName},
-                up_new_file_name=#{upNewFileName}, 
-                up_file_path=#{upFilePath},
-                up_file_size=#{upFileSize}
+                soc_up_original_file_name=#{socUpOriginalFileName},
+                soc_up_new_file_name=#{socUpNewFileName}, 
+                soc_up_file_path=#{socUpFilePath},
+                soc_up_file_size=#{socUpFileSize}
         WHERE soc_seq=#{socSeq}
     </update>
 
 	<!-- Content delete -->
-    <delete id="socContentRemove" parameterType="hashMap">
+    <delete id="soccerContentRemove" parameterType="hashMap">
        DELETE FROM jsp.soccer WHERE soc_seq=#{socSeq}
     </delete>
 	<!-- file delete -->
-    <delete id="socFileRemove" parameterType="com.co.kr.domain.SoccerFileDomain">
-	    DELETE FROM jsp.files WHERE up_new_file_name = #{upNewFileName}
+    <delete id="soccerFileRemove" parameterType="com.co.kr.domain.SoccerFileDomain">
+	    DELETE FROM jsp.soccerfiles WHERE soc_up_new_file_name = #{socUpNewFileName}
 	</delete>
 	
 	<!-- content -->
@@ -92,7 +92,7 @@
 
 	<!-- file -->
 	<select id="soccerSelectOneFile" resultType="com.co.kr.domain.SoccerFileDomain" parameterType="map">
-    	SELECT soc_seq, mb_id, up_original_file_name, up_new_file_name, up_file_path, up_file_size
+    	SELECT soc_seq, mb_id, soc_up_original_file_name, soc_up_new_file_name, soc_up_file_path, soc_up_file_size
     	FROM jsp.view_soccer where soc_seq = #{socSeq}
 	</select>
 

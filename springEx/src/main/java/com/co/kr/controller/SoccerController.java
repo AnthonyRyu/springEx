@@ -42,22 +42,22 @@ public class SoccerController {
 
 	
 	@PostMapping(value = "socUpload")
-	public ModelAndView socUpload(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) throws IOException, ParseException {
+	public ModelAndView socccerUpload(soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) throws IOException, ParseException {
 		
 		ModelAndView mav = new ModelAndView();
-		int socSeq = soccerUploadService.socFileProcess(soccerListVO, request, httpReq);
-		soccerListVO.setContent(""); //초기화
-		soccerListVO.setTitle(""); //초기화
+		int socSeq = soccerUploadService.soccerFileProcess(soccerListVO, request, httpReq);
+		soccerListVO.setSocContent(""); //초기화
+		soccerListVO.setSocTitle(""); //초기화
 		
 		// 화면에서 넘어올때는 bdSeq String이라 string으로 변환해서 넣어즘
-		mav = socSelectOneCall(soccerListVO, String.valueOf(socSeq),request);
+		mav = soccerSelectOneCall(soccerListVO, String.valueOf(socSeq),request);
 		mav.setViewName("soccer/socList.html");
 		return mav;
 		
 	}
 	
 	//리스트 하나 가져오기 따로 함수뺌
-	public ModelAndView socSelectOneCall(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, String socSeq, HttpServletRequest request) {
+	public ModelAndView soccerSelectOneCall(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, String socSeq, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
@@ -65,33 +65,33 @@ public class SoccerController {
 		map.put("socSeq", Integer.parseInt(socSeq));
 		SoccerListDomain soccerListDomain = soccerUploadService.soccerSelectOne(map);
 		System.out.println("soccerListDomain"+soccerListDomain);
-		List<SoccerFileDomain> socFileList =  soccerUploadService.soccerSelectOneFile(map);
+		List<SoccerFileDomain> soccerFileList =  soccerUploadService.soccerSelectOneFile(map);
 			
-		for (SoccerFileDomain list : socFileList) {
-			String path = list.getUpFilePath().replaceAll("\\\\", "/");
-			list.setUpFilePath(path);
+		for (SoccerFileDomain list : soccerFileList) {
+			String path = list.getSocUpFilePath().replaceAll("\\\\", "/");
+			list.setSocUpFilePath(path);
 		}
 		mav.addObject("soccerDetail", soccerListDomain);
-		mav.addObject("soccerFiles", socFileList);
+		mav.addObject("soccerFiles", soccerFileList);
 
 		//삭제시 사용할 용도
-		session.setAttribute("soccerFiles", socFileList);
+		session.setAttribute("soccerFiles", soccerFileList);
 
 		return mav;
 	}	
 	
 	//detail
-		@GetMapping("socDetail")
-	    public ModelAndView socDetail(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, @RequestParam("socSeq") String socSeq, HttpServletRequest request) throws IOException {
+		@GetMapping("soccerDetail")
+	    public ModelAndView soccerDetail(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, @RequestParam("socSeq") String socSeq, HttpServletRequest request) throws IOException {
 			ModelAndView mav = new ModelAndView();
 			//하나파일 가져오기
-			mav = socSelectOneCall(soccerListVO, socSeq,request);
+			mav = soccerSelectOneCall(soccerListVO, socSeq,request);
 			mav.setViewName("soccer/socList.html");
 			return mav;
 		}
 		
-	@GetMapping("socEdit")
-	public ModelAndView edit(soccerListVO soccerListVO, @RequestParam("socSeq") String socSeq, HttpServletRequest request) throws IOException {
+	@GetMapping("soccerEdit")
+	public ModelAndView soccerEdit(soccerListVO soccerListVO, @RequestParam("socSeq") String socSeq, HttpServletRequest request) throws IOException {
 		
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -99,68 +99,68 @@ public class SoccerController {
 			
 		map.put("socSeq", Integer.parseInt(socSeq));
 		SoccerListDomain soccerListDomain = soccerUploadService.soccerSelectOne(map);
-		List<SoccerFileDomain> socFileList =  soccerUploadService.soccerSelectOneFile(map);
+		List<SoccerFileDomain> soccerFileList =  soccerUploadService.soccerSelectOneFile(map);
 			
-		for (SoccerFileDomain list : socFileList) {
-			String path = list.getUpFilePath().replaceAll("\\\\", "/");
-			list.setUpFilePath(path);
+		for (SoccerFileDomain list : soccerFileList) {
+			String path = list.getSocUpFilePath().replaceAll("\\\\", "/");
+			list.setSocUpFilePath(path);
 		}
 
-		soccerListVO.setSeq(soccerListDomain.getSocSeq());
-		soccerListVO.setContent(soccerListDomain.getSocContent());
-		soccerListVO.setTitle(soccerListDomain.getSocTitle());
+		soccerListVO.setSocSeq(soccerListDomain.getSocSeq());
+		soccerListVO.setSocContent(soccerListDomain.getSocContent());
+		soccerListVO.setSocTitle(soccerListDomain.getSocTitle());
 		soccerListVO.setIsEdit("edit");  // upload 재활용하기위해서
 			
 		
-		mav.addObject("detail", soccerListDomain);
-		mav.addObject("files", socFileList);
-		mav.addObject("fileLen",socFileList.size());
+		mav.addObject("soccerDetail", soccerListDomain);
+		mav.addObject("soccerFiles", soccerFileList);
+		mav.addObject("soccerFileLen",soccerFileList.size());
 			
 		mav.setViewName("soccer/socBoardEditList.html");
 		return mav;
 	}
 	
-	@PostMapping("socEditSave")
-	public ModelAndView editSave(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) throws IOException {
+	@PostMapping("soccerEditSave")
+	public ModelAndView soccerEditSave(@ModelAttribute("soccerListVO") soccerListVO soccerListVO, MultipartHttpServletRequest request, HttpServletRequest httpReq) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		
 		//저장
-		soccerUploadService.socFileProcess(soccerListVO, request, httpReq);
+		soccerUploadService.soccerFileProcess(soccerListVO, request, httpReq);
 		
-		mav = socSelectOneCall(soccerListVO, soccerListVO.getSeq(),request);
-		soccerListVO.setContent(""); //초기화
-		soccerListVO.setTitle(""); //초기화
+		mav = soccerSelectOneCall(soccerListVO, soccerListVO.getSocSeq(),request);
+		soccerListVO.setSocContent(""); //초기화
+		soccerListVO.setSocTitle(""); //초기화
 		mav.setViewName("soccer/socList.html");
 		return mav;
 	}
 
-	@SuppressWarnings("unchecked")
-	@GetMapping("socRemove")
+	
+	@GetMapping("soccerRemove")
 	public ModelAndView mbRemove(@RequestParam("socSeq") String socSeq, HttpServletRequest request) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<SoccerFileDomain> socFileList = null;
+		List<SoccerFileDomain> soccerFileList = null;
 		if(session.getAttribute("socFiles") != null) {						
-			socFileList = (List<SoccerFileDomain>) session.getAttribute("socFiles");
+			soccerFileList = (List<SoccerFileDomain>) session.getAttribute("socFiles");
 		}
 
 		map.put("socSeq", Integer.parseInt(socSeq));
 		
 		//내용삭제
-		soccerUploadService.socContentRemove(map);
+		soccerUploadService.soccerContentRemove(map);
 
-		for (SoccerFileDomain list : socFileList) {
-			list.getUpFilePath();
-			Path filePath = Paths.get(list.getUpFilePath());
+		for (SoccerFileDomain list : soccerFileList) {
+			list.getSocUpFilePath();
+			Path filePath = Paths.get(list.getSocUpFilePath());
 	 
 	        try {
 	        	
 	            // 파일 물리삭제
 	            Files.deleteIfExists(filePath); // notfound시 exception 발생안하고 false 처리
 	            // db 삭제 
-							soccerUploadService.socFileRemove(list);
+							soccerUploadService.soccerFileRemove(list);
 				
 	        } catch (DirectoryNotEmptyException e) {
 							throw RequestException.fire(Code.E404, "디렉토리가 존재하지 않습니다", HttpStatus.NOT_FOUND);
@@ -170,7 +170,7 @@ public class SoccerController {
 		}
 
 		//세션해제
-		session.removeAttribute("socFiles"); // 삭제
+		session.removeAttribute("soccerFiles"); // 삭제
 		mav = socListCall();
 		mav.setViewName("soccer/socList.html");
 		
