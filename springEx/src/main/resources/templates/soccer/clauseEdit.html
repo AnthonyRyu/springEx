@@ -18,33 +18,37 @@
             <tr> 
 	            <th>선수명</th>
                 <td>
-                    <input type="hidden" th:field="*{socSeq}" />
+                    <input type="hidden" th:field="*{Seq}" />
                     <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{socTitle}" placeholder="선수명" required/>
+                    <input type="text" th:field="*{Title}" placeholder="선수명" required/>
                 </td>
-                <th>선수 포지션</th>
-                <td>
-                    <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{socPosition}" placeholder="선수 포지션" required/>
-                </td>
-                <th>선수 소속팀</th>
-                <td>
-                    <input type="hidden" th:field="*{isEdit}"/>
-                    <input type="text" th:field="*{socTeam}" placeholder="선수 소속팀" required/>
-                </td> 
-            </tr>          
+            </tr>   
+            <tr>
+	            <th>선수 포지션</th>
+	                <td>
+	                    <input type="hidden" th:field="*{isEdit}"/>
+	                    <input type="text" th:field="*{Position}" placeholder="선수 포지션" required/>
+	                </td>
+            </tr>       
+            <tr>
+	            <th>선수 소속팀</th>
+	                <td>
+	                    <input type="hidden" th:field="*{isEdit}"/>
+	                    <input type="text" th:field="*{Team}" placeholder="선수 소속팀" required/>
+	                </td> 
+            </tr>
    
             <tr> 
                <th>선수 소개</th>
                 <td >
-                   <textarea colspan="3" id="story" th:field="*{socContent}" placeholder="선수의 특징 및 특성을 적어주세요." rows="5" cols="200" required></textarea>
+                   <textarea colspan="3" id="story" th:field="*{content}" placeholder="선수의 특징 및 특성을 적어주세요." rows="5" cols="200" required></textarea>
                 </td>
             </tr>
             <tr> 
                <th><label for="file">선수 사진</label></th>
                 <td>
-                    <input type="file" id="socFile" name="socFiles" multiple />
-                    <span style="color: #00a2be" th:text="'*새로 사진첨부시 기존 사진은 삭제됩니다.(첨부된 사진 : '+ ${fileLen} + '개)'"></span>
+                    <input type="file" id="soccerFile" name="soccerFiles" multiple />
+                    <span style="color: #00a2be" th:text="'*새로 사진첨부시 기존 사진은 삭제됩니다.(첨부된 사진 : '+ ${soccerFileLen} + '개)'"></span>
                 </td>
             </tr>
         </tbody>

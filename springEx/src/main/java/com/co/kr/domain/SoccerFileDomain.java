@@ -10,8 +10,6 @@ public class SoccerFileDomain {
 	
 	private Integer socSeq;
 	private String mbId;
-	private String socPosition;
-	private String socTeam;
 	
 	private String socUpOriginalFileName;
 	private String socUpNewFileName; //동일 이름 업로드 될 경우

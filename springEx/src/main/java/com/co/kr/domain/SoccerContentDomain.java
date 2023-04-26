@@ -9,10 +9,10 @@ public class SoccerContentDomain {
 
 	private Integer socSeq;
 	private String mbId;
-	private String socPosition;
-	private String socTeam;
 
 	private String socTitle;
+	private String socPosition;
+	private String socTeam;
 	private String socContent;
 
 }

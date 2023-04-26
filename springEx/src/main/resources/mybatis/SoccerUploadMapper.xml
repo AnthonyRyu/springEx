@@ -15,11 +15,11 @@
         keyProperty="socSeq" keyColumn="soc_seq">
 	
         INSERT INTO jsp.soccer (
-            			mb_id,   
-						soc_title,
-						soc_position,
-						soc_team,                   
-						soc_content  
+            mb_id,   
+			soc_title,
+			soc_position,
+			soc_team,                        
+			soc_content  
         )
         VALUES (
             #{mbId},
@@ -86,14 +86,15 @@
 	
 	<!-- content -->
 	<select id="soccerSelectOne" resultType="com.co.kr.domain.SoccerListDomain" parameterType="map">
-    	SELECT soc_seq, mb_id, soc_title, soc_content, soc_create_at, soc_update_at
-    	FROM jsp.soccer where soc_seq = #{socSeq}
+	    SELECT soc_seq, mb_id, soc_title, soc_position, soc_team, soc_content, soc_create_at, soc_update_at
+	    FROM jsp.soccer where soc_seq = #{socSeq}
 	</select>
 
 	<!-- file -->
 	<select id="soccerSelectOneFile" resultType="com.co.kr.domain.SoccerFileDomain" parameterType="map">
-    	SELECT soc_seq, mb_id, soc_up_original_file_name, soc_up_new_file_name, soc_up_file_path, soc_up_file_size
-    	FROM jsp.view_soccer where soc_seq = #{socSeq}
+	    SELECT soc_seq, mb_id, soc_up_original_file_name, soc_up_new_file_name, soc_up_file_path, soc_up_file_size
+	    FROM jsp.view_soccer where soc_seq = #{socSeq}
 	</select>
+	
 
 </mapper>

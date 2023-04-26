@@ -7,7 +7,7 @@
 </div>
 
 <div class="title" style="color:#00a2be">축구선수 리스트</div>
-<form role="form" action="socUpload" method="post" enctype="multipart/form-data">
+<form role="form" action="soccerUpload" method="post" enctype="multipart/form-data">
     <div class="section form">
        <table>
         <colgroup>
@@ -18,30 +18,36 @@
             <tr> 
                 <th>선수명</th>
                 <td>
-                    <input type="hidden" name="socSeq" placeholder="등록번호" required/>
-                    <input type="text" name="socTitle" placeholder="선수명" required/>
+                    <input type="hidden" name="seq" placeholder="등록번호" required/>
+                    <input type="text" name="title" placeholder="선수명" required/>
                 </td>
-                <th>선수 포지션</th>
-                <td>
-                    <input type="text" name="socPosition" placeholder="포지션" required/>
-                    
-                </td>
-                 <th>선수 소속팀</th>
-                <td>
-                    <input type="text" name="socTeam" placeholder="소속팀" required/>
-                </td>
+            </tr>
+            
+            <tr>
+	            <th>선수 포지션</th>
+	                <td>
+	                    <input type="text" name="position" placeholder="포지션" required/>
+	                    
+	                </td>  
+            </tr>
+            
+            <tr>
+	            <th>선수 소속팀</th>
+		                <td>
+		                    <input type="text" name="team" placeholder="소속팀" required/>
+		                </td>   
             </tr>
 
             <tr> 
                <th>선수 소개</th>
                 <td >
-                   <textarea colspan="3" id="story" name="socContent" placeholder="선수의 특징을 적어주세요." rows="5" cols="200" required></textarea>
+                   <textarea colspan="3" id="soccerStory" name="content" placeholder="선수의 특징을 적어주세요." rows="5" cols="200" required></textarea>
                 </td>
             </tr>
             <tr> 
                <th><label for="file">선수 사진</label></th>
                 <td>
-                    <input type="file" id="socFile" name="socFiles" multiple />
+                    <input type="file" id="soccerFile" name="soccerFiles" multiple />
                 </td>
             </tr>
         </tbody>

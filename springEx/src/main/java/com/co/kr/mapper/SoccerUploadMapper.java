@@ -15,14 +15,14 @@ public interface SoccerUploadMapper {
 	//list
 	public List<SoccerListDomain> soccerList();
 	
-	//content upload
+	//content insert
 	public void soccerContentUpload(SoccerContentDomain soccerContentDomain);
-	//file upload
+	//file insert
 	public void soccerFileUpload(SoccerFileDomain soccerFileDomain);
 
 	//content update
 	public void soccerContentUpdate(SoccerContentDomain soccerContentDomain);
-	//file update
+	//file updata
 	public void soccerFileUpdate(SoccerFileDomain soccerFileDomain);
 
   //content delete 
@@ -35,7 +35,5 @@ public interface SoccerUploadMapper {
 
 	//select one file
 	public List<SoccerFileDomain> soccerSelectOneFile(HashMap<String, Object> map);
-	
 
 }
-
