@@ -19,7 +19,7 @@ body,
 .main .content .form {width:260px;margin:40px auto 0}
 .main .content .form input {height:40px;}
 .main .content .form input + input {margin-top:10px}
-.main .content .form button {width:100%;height:40px;margin-top:10px;color:#fff;border-radius:4px;background:#00a2be}
+.main .content .form button {width:100%;height:40px;margin-top:10px;color:#fff;border-radius:4px;background:#8a2be2}
 .main .content li.signin {width:100%;height:40px;margin-top:30px;text-align:center;}
 .main .content li.signin a {color:#fff; }
 
@@ -56,7 +56,7 @@ body,
 
 .container {margin-left:220px;padding:40px}
 .userInfo {text-align:right}
-.userInfo button {margin-left:5px;padding:4px 8px;color:#fff;border-radius:4px;background:#00a2be}
+.userInfo button {margin-left:5px;padding:4px 8px;color:#fff;border-radius:4px;background:#8a2be2}
 .title {font-weight:600;font-size:22px; color:white; text-align-last: center;}
 .section {margin-top:20px;padding:20px 30px;background:#fff}
 
@@ -68,7 +68,7 @@ table td {padding:10px 0}
 .form td {padding:5px}
 .form th {padding:5px 10px;text-align:right}
 .form td {text-align:left}
-.form th.critical::before {content:'*';padding-right:4px;color:#00a2be}
+.form th.critical::before {content:'*';padding-right:4px;color:#8a2be2}
 .form input[type="text"] {background:#f5f5f5}
 .form textarea {border: 1px solid #eee;
     background:#f5f5f5;
@@ -81,24 +81,24 @@ table td {padding:10px 0}
     }
 /* .form textarea {width: 100%; min-height: 6.25em; border-radius:4px; resize: none;color:#555; background:#f5f5f5; border:1px solid #eee;padding: 0 10px;} */
 
-.form select {width:30%;padding-right:32px;border:1px solid #00a2be;border-radius:4px;background:url('../images/icon_select.png') no-repeat center right}
+.form select {width:30%;padding-right:32px;border:1px solid #8a2be2;border-radius:4px;background:url('../images/icon_select.png') no-repeat center right}
 .form select:only-child {width:100%}
 .form select + select {margin-left:5px}
 .form .button {width:99.7%;margin-top:10px;text-align:right}
-.form .button button {text-align:right;padding:8px 20px;color:#fff;border-radius:4px;background:#00a2be}
+.form .button button {text-align:right;padding:8px 20px;color:#fff;border-radius:4px;background:#8a2be2}
 .list .total {text-align:right}
 .list .total div {display:inline-block;color:#555; margin-bottom:10px;}
 .list .total div + div {margin-left:10px}
-.list .total span {color:#00a2be}
+.list .total span {color:#8a2be2}
 .list .total + table {margin-top:10px}
 .list th {border-right:1px solid #eee;background:#f5f5f5}
 .list td {color:#555;border:1px solid #eee;border-width:0 1px 1px 0}
 .list th:last-child,
 .list td:last-child {border-right:0}
-.list button {margin:1px;padding:2px 8px;font-size:12px;color:#00a2be;border:1px solid #00a2be;border-radius:4px}{margin-left:2px}
-.list .pointList th {color:#fff;background:#00a2be}
-p.dash-title {color:#00a2be; margin-top:20px; margin-bottom:5px; font-weight:600; font-size:16px;}
-td.cnt {color: #00a2be;font-size: 16px;}
+.list button {margin:1px;padding:2px 8px;font-size:12px;color:#8a2be2;border:1px solid #8a2be2;border-radius:4px}{margin-left:2px}
+.list .pointList th {color:#fff;background:#8a2be2}
+p.dash-title {color:#8a2be2; margin-top:20px; margin-bottom:5px; font-weight:600; font-size:16px;}
+td.cnt {color: #8a2be2;font-size: 16px;}
 span.board-date{color:#333; font-size:14px;}
 
 textarea {width: 100%; min-height: 6.25em; border: none; resize: none;}
@@ -107,59 +107,59 @@ textarea {width: 100%; min-height: 6.25em; border: none; resize: none;}
 .board tr:first-child td {border-top:1px solid #eee}
 .board th {padding-right:20px;text-align:right;background:#f5f5f5;border:1px solid #eee;border-width:0 1px 1px 0}
 .board td {padding-left:20px;text-align:left;color:#555;border-bottom:1px solid #eee}
-.board a {color:#00a2be}
+.board a {color:#8a2be2}
 .board a:hover {text-decoration:underline}
 .pagination {margin-top:20px;text-align:center}
 .pagination li div {display:inline-block;width:26px;height:26px;vertical-align:middle;line-height:26px;font-size:12px;color:#555}
-.pagination li div.on {line-height:24px;color:#00a2be;border:1px solid #ffffff;box-sizing:border-box}
+.pagination li div.on {line-height:24px;color:#8a2be2;border:1px solid #ffffff;box-sizing:border-box}
 .pagination a {display:inline-block;width:26px;height:26px;vertical-align:middle;line-height:26px;font-size:12px;color:#555}
-.pagination a.on {line-height:24px;color:#00a2be;border:1px solid #00a2be;box-sizing:border-box}
-.pagination a.icon {color:#00a2be; overflow:hidden;text-indent:-999px;background:url('../images/icon_page.png') no-repeat 0 0}
-.pagination a.icon:hover:not(.disabled) {color:#00a2be; background-position-y:-26px}
+.pagination a.on {line-height:24px;color:#8a2be2;border:1px solid #8a2be2;box-sizing:border-box}
+.pagination a.icon {color:#8a2be2; overflow:hidden;text-indent:-999px;background:url('../images/icon_page.png') no-repeat 0 0}
+.pagination a.icon:hover:not(.disabled) {color:#8a2be2; background-position-y:-26px}
 .pagination a.disabled {background-position-y:-52px}
 .pagination a.first {background-position-x:0}
 .pagination a.prev {margin-right:10px;background-position-x:-26px}
 .pagination a.next {margin-left:10px;background-position-x:-52px}
 .pagination a.last {background-position-x:-78px}
-.pagination a:hover {color:#00a2be}
+.pagination a:hover {color:#8a2be2}
 
 .error {margin-top:150px;text-align:center}
-.error strong {display:block;padding-top:120px;font-size:30px;color:#00a2be;background:url('../images/error.png') no-repeat top center}
+.error strong {display:block;padding-top:120px;font-size:30px;color:#8a2be2;background:url('../images/error.png') no-repeat top center}
 .error strong + span {margin-top:10px;  }
 .error span {display:block;font-size:15px;  color:#555;}
 
 a.tip {display:inline-block; cursor:help; position:relative; color:#353535;}
 a.tip span{display:none;}
-a.tip:hover span{ color:#00a2be; background-color:#f4fcff; border-bottom:1px dotted #00a2be; padding:0px 5px 0px 5px; display:block; z-index:100; 
+a.tip:hover span{ color:#8a2be2; background-color:#f4fcff; border-bottom:1px dotted #8a2be2; padding:0px 5px 0px 5px; display:block; z-index:100; 
 left:0px; top:-22px; position:absolute; transform:translateX(-100%); left:100%; text-decoration:none; white-space:nowrap;}
 
 th a.list-tip-var {display:inline-block; cursor:help; position:relative; color:#fff;}
 th a.list-tip-var span{display:none;}
-th a.list-tip-var:hover span{ color:#00a2be; background-color:#f4fcff; border-bottom:1px dotted #00a2be; padding:0px 5px 0px 5px; display:block; z-index:100; 
+th a.list-tip-var:hover span{ color:#8a2be2; background-color:#f4fcff; border-bottom:1px dotted #8a2be2; padding:0px 5px 0px 5px; display:block; z-index:100; 
 left:0px; top:-22px; position:absolute; transform:translateX(-50%); left:50%; text-decoration:none; white-space:nowrap;}
 
 
 a.list-tip {cursor:help; position:relative; color:#353535;}
 a.list-tip span{display:none;}
-a.list-tip:hover span{ color:#00a2be; background-color:#f4fcff; border-bottom:1px dotted #00a2be; padding:0px 5px 0px 5px; display:block; z-index:100; 
+a.list-tip:hover span{ color:#8a2be2; background-color:#f4fcff; border-bottom:1px dotted #8a2be2; padding:0px 5px 0px 5px; display:block; z-index:100; 
 left:0px; top:-22px; position:absolute; transform:translateX(-50%); left:50%; text-decoration:none; white-space:nowrap;}
 
 a.list-tip1 {cursor:help; position:relative; color:#353535;}
 a.list-tip1 span{display:none;}
-a.list-tip1:hover span{ color:#00a2be; background-color:#f4fcff; border-bottom:1px dotted #00a2be; padding:0px 5px 0px 5px; display:block; z-index:100; 
+a.list-tip1:hover span{ color:#8a2be2; background-color:#f4fcff; border-bottom:1px dotted #8a2be2; padding:0px 5px 0px 5px; display:block; z-index:100; 
 left:0px; top:-22px; position:absolute; transform:translateX(-90%); left:100%; text-decoration:none; white-space:nowrap;}
 
-a.down {margin-left:5px; margin-bottom:15px; padding:4px 8px;color:#fff;border-radius:4px;background:#00a2be}
-a.down:hover {margin-left:5px;margin-bottom:15px;  padding:4px 8px;color:#fff;border-radius:4px;background:#00a2be}
+a.down {margin-left:5px; margin-bottom:15px; padding:4px 8px;color:#fff;border-radius:4px;background:#8a2be2}
+a.down:hover {margin-left:5px;margin-bottom:15px;  padding:4px 8px;color:#fff;border-radius:4px;background:#8a2be2}
 
 td.red-font {padding:10px 0; color:red;}
 td.blue-font {padding:10px 0; color:blue;}
 
-button.green {  display:inline-block; margin-left:5px; margin-top:5px; margin-bottom:-300px; padding:4px 8px;color:#fff;border-radius:4px;background:#00a2be}
-span.critical { display:inline; content:'*'; width:98%; text-align:right; color:#00a2be; padding-left:15px; }
+button.green {  display:inline-block; margin-left:5px; margin-top:5px; margin-bottom:-300px; padding:4px 8px;color:#fff;border-radius:4px;background:#8a2be2}
+span.critical { display:inline; content:'*'; width:98%; text-align:right; color:#8a2be2; padding-left:15px; }
 td span.week-span {display:inline}
 
-.form .week-button button { display: inline-block; position: relative;  padding:8px 20px;color:#fff;border-radius:4px;background:#00a2be}
+.form .week-button button { display: inline-block; position: relative;  padding:8px 20px;color:#fff;border-radius:4px;background:#8a2be2}
 button.highlight { display:inlin-block; background-color: #8A2BE2;}
 
 
