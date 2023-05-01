@@ -1,7 +1,13 @@
 package com.co.kr.util;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -45,7 +51,6 @@ public class CommonUtils {
 		}
 		return ip;
 	};
-	
 	
 	// auth redirect
 	public static void redirect(String alertText, String redirectPath, HttpServletResponse response) throws IOException {

@@ -1,10 +1,12 @@
 <div  class="userInfo" th:if=${session.id}>
-    <span th:text="${session.id}"></span><span> 축구팬 // 맥주소: 00:24:D6:D1:8C:10 // </span>
+    <span th:text="${session.id}"></span><span> 축구팬 // Mac 주소: </span>
+    <span th:text="${session.mac}"> </span><span> //</span>
     <span th:text="${session.mbLevel}"></span><span> 등급</span>
     <button type="button">
         <a th:href="@{logout}" style="color: #fff">로그아웃</a>
     </button>
 </div>
+
 
 <div class="title" style="color:#8a2be2; font-size:3.0em">축구선수 리스트</div>
 <form role="form" action="soccerUpload" method="post" enctype="multipart/form-data">

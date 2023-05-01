@@ -28,6 +28,7 @@ import com.co.kr.service.SoccerUploadService;
 import com.co.kr.service.UploadService;
 import com.co.kr.service.UserService;
 import com.co.kr.util.CommonUtils;
+import com.co.kr.util.NetworkInfo;
 import com.co.kr.util.Pagination;
 import com.co.kr.vo.LoginVO;
 
@@ -73,8 +74,11 @@ public class UserController {
 		//현재아이피 추출
 		String IP = CommonUtils.getClientIP(request);
 		
+		String Mac = NetworkInfo.getShortMacAddress();
+		
 		//session 저장
 		session.setAttribute("ip",IP);
+		session.setAttribute("mac", Mac);
 		session.setAttribute("id", loginDomain.getMbId());
 		session.setAttribute("mbLevel", loginDomain.getMbLevel());
 				
@@ -297,6 +301,7 @@ public class UserController {
 			
 			//현재아이피 추출
 			String IP = CommonUtils.getClientIP(request);
+			String Mac = NetworkInfo.getShortMacAddress();
 			
 //			//자동생성 
 //			for (int i = 1; i < 32; i++) {
@@ -334,6 +339,7 @@ public class UserController {
 			if(loginVO.getAdmin() == null) { // 'admin'들어있을때는 alert 스킵이다
 				// session 저장 
 				session.setAttribute("ip",IP);
+				session.setAttribute("mac", Mac);
 				session.setAttribute("id", loginDomain.getMbId());
 				session.setAttribute("mbLevel", (totalcount == 0) ? "3" : "2");   // 최초가입자를 level 3 admin 부여
 				mav.setViewName("redirect:/bdList");
